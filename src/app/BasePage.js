@@ -27,37 +27,32 @@ export default function BasePage() {
   // https://reactjs.org/docs/hooks-reference.html#useeffect
 
   return (
-    <Suspense fallback={<LayoutSplashScreen />}>
-      <Switch>
-        {
-          /* Redirect from root URL to /dashboard. */
-          <Redirect exact from="/" to="/dashboard" />
-        }
-        <ContentRoute path="/dashboard" component={DashboardPage} />
-        <ContentRoute path="/builder" component={BuilderPage} />
-        <ContentRoute path="/my-page" component={MyPage} />
-        <ContentRoute
-          path="/profiles/players"
-          component={PlayersProfilesPage}
-        />
-        <ContentRoute
-          path="/profiles/sponsors"
-          component={SponsorsProfilesPage}
-        />
-        <ContentRoute
-          path="/tournaments/upcoming"
-          component={UpComingTournaments}
-        />
-        <ContentRoute
-          path="/tournaments/completed"
-          component={CompletedTournaments}
-        />
-        <ContentRoute path="/setting/networks" component={NetworksList} />
-        <Route path="/google-material" component={GoogleMaterialPage} />
-        <Route path="/react-bootstrap" component={ReactBootstrapPage} />
-        <Route path="/e-commerce" component={ECommercePage} />
-        <Redirect to="error/error-v1" />
-      </Switch>
-    </Suspense>
+    <Switch>
+      {
+        /* Redirect from root URL to /dashboard. */
+        <Redirect exact from="/" to="/dashboard" />
+      }
+      <ContentRoute path="/dashboard" component={DashboardPage} />
+      <ContentRoute path="/builder" component={BuilderPage} />
+      <ContentRoute path="/my-page" component={MyPage} />
+      <ContentRoute path="/profiles/players" component={PlayersProfilesPage} />
+      <ContentRoute
+        path="/profiles/sponsors"
+        component={SponsorsProfilesPage}
+      />
+      <ContentRoute
+        path="/tournaments/upcoming"
+        component={UpComingTournaments}
+      />
+      <ContentRoute
+        path="/tournaments/completed"
+        component={CompletedTournaments}
+      />
+      <ContentRoute path="/setting/networks" component={NetworksList} />
+      <Route path="/google-material" component={GoogleMaterialPage} />
+      <Route path="/react-bootstrap" component={ReactBootstrapPage} />
+      <Route path="/e-commerce" component={ECommercePage} />
+      <Redirect to="error/error-v1" />
+    </Switch>
   );
 }
