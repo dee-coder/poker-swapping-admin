@@ -1,0 +1,6 @@
+{
+    "baseurl":"http://localhost:1234",
+    "getPlayerList":"/admin/player/all",
+    "getUpcomingTournaments":"/admin/tournaments/upcoming",
+    "getAllNetworks":"/admin/networks/all"
+}
