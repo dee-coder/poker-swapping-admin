@@ -9,7 +9,7 @@ import {
   DropdownMenu2,
 } from "../../_metronic/_partials/dropdowns";
 
-export function CustomNetworksListWidget({ className, data }) {
+export function CustomNetworksListWidget({ className, data, setOpenAddNew }) {
   return (
     <>
       <div className={`card card-custom ${className}`}>
@@ -17,7 +17,10 @@ export function CustomNetworksListWidget({ className, data }) {
         <div className="card-header border-0">
           <h3 className="card-title font-weight-bolder text-dark">Networks</h3>
           <div className="card-toolbar">
-            <button className="btn btn-light-primary btn-sm font-weight-bolder ">
+            <button
+              className="btn btn-light-primary btn-sm font-weight-bolder "
+              onClick={(e) => setOpenAddNew(true)}
+            >
               Add New +
             </button>
           </div>

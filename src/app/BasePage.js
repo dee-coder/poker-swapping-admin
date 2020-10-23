@@ -9,6 +9,9 @@ import SponsorsProfilesPage from "./pages/SponsorsProfilesPage";
 import UpComingTournaments from "./pages/UpComingTournamnets";
 import CompletedTournaments from "./pages/CompletedTournaments";
 import NetworksList from "./pages/PlatformNetworks";
+import NetworkReviewPage from "./pages/NetworkReviewPage";
+import NetworkPages from "./pages/NetworkPages";
+import NewNetworkPage from "./pages/NewNetworkPage";
 
 const GoogleMaterialPage = lazy(() =>
   import("./modules/GoogleMaterialExamples/GoogleMaterialPage")
@@ -48,7 +51,15 @@ export default function BasePage() {
         path="/tournaments/completed"
         component={CompletedTournaments}
       />
-      <ContentRoute path="/setting/networks" component={NetworksList} />
+      <ContentRoute path="/networks/all" component={NetworksList} />
+      <ContentRoute path="/networks/pages" component={NetworkPages} />
+      <ContentRoute path="/networks/newpage" component={NewNetworkPage} />
+
+      <ContentRoute
+        path="/deals/888poker-review"
+        component={NetworkReviewPage}
+      />
+
       <Route path="/google-material" component={GoogleMaterialPage} />
       <Route path="/react-bootstrap" component={ReactBootstrapPage} />
       <Route path="/e-commerce" component={ECommercePage} />

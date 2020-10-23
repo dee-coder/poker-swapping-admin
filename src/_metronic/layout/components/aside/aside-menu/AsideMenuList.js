@@ -195,11 +195,11 @@ export function AsideMenuList({ layoutProps }) {
           aria-haspopup="true"
           data-menu-toggle="hover"
         >
-          <NavLink className="menu-link menu-toggle" to="/tournaments/upcoming">
+          <NavLink className="menu-link menu-toggle" to="/networks/all">
             <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Design/Cap-2.svg")} />
             </span>
-            <span className="menu-text">Settings</span>
+            <span className="menu-text">Networks</span>
             <i className="menu-arrow" />
           </NavLink>
           <div className="menu-submenu ">
@@ -215,7 +215,40 @@ export function AsideMenuList({ layoutProps }) {
               {/*begin::2 Level*/}
               <li
                 className={`menu-item menu-item-submenu ${getMenuItemActive(
-                  "/settings/networks",
+                  "/networks/all",
+                  true
+                )}`}
+                aria-haspopup="true"
+                data-menu-toggle="hover"
+              >
+                <NavLink className="menu-link menu-toggle" to="/networks/all">
+                  <i className="menu-bullet menu-bullet-dot">
+                    <span />
+                  </i>
+                  <span className="menu-text">All</span>
+                  <i className="menu-arrow" />
+                </NavLink>
+              </li>
+              <li
+                className={`menu-item menu-item-submenu ${getMenuItemActive(
+                  "/networks/pages",
+                  true
+                )}`}
+                aria-haspopup="true"
+                data-menu-toggle="hover"
+              >
+                <NavLink className="menu-link menu-toggle" to="/networks/pages">
+                  <i className="menu-bullet menu-bullet-dot">
+                    <span />
+                  </i>
+                  <span className="menu-text">Pages</span>
+                  <i className="menu-arrow" />
+                </NavLink>
+              </li>
+
+              <li
+                className={`menu-item menu-item-submenu ${getMenuItemActive(
+                  "/networks/newpage",
                   true
                 )}`}
                 aria-haspopup="true"
@@ -223,12 +256,12 @@ export function AsideMenuList({ layoutProps }) {
               >
                 <NavLink
                   className="menu-link menu-toggle"
-                  to="/setting/networks"
+                  to="/networks/newpage"
                 >
                   <i className="menu-bullet menu-bullet-dot">
                     <span />
                   </i>
-                  <span className="menu-text">Networks</span>
+                  <span className="menu-text">New Page</span>
                   <i className="menu-arrow" />
                 </NavLink>
               </li>
