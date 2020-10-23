@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Col, Row, Form, Card } from "react-bootstrap";
+import { Col, Row, Form, Card, Button } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
+import { convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const NewNetworkPage = () => {
   const [editorState, setEditorState] = useState("");
 
-  const convertRaw = () => {
-    convertToRaw(contentState: ContentState): RawDraftContentState
-
+  const convertRaw = (e) => {
+    e.preventDefault();
+    JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+    console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
   };
   return (
     <div>
@@ -33,8 +35,8 @@ const NewNetworkPage = () => {
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
                     onEditorStateChange={(v) => setEditorState(v)}
-                    
                   />
+                  <Button onClick={(e) => convertRaw(e)}>Convert </Button>
                 </Form.Group>
               </Form>
             </Card.Body>
