@@ -1,16 +1,60 @@
-import React, { useState } from "react";
-import { Col, Row, Form, Card, Button } from "react-bootstrap";
-import { Editor } from "react-draft-wysiwyg";
-import { convertToRaw } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
+import React, { useState, useRef } from "react";
+import { Col, Row, Form, Card, Button, InputGroup } from "react-bootstrap";
+import { Editor } from "@tinymce/tinymce-react";
+import API from "../../apiUrl.json";
 const NewNetworkPage = () => {
-  const [editorState, setEditorState] = useState("");
+  //const [editorState, setEditorState] = useState("");
+  const editor = useRef(null);
+  const [content, setContent] = useState("");
+  const [url, setUrl] = useState("");
+  const [network, setNetwork] = useState("");
+  const [title, setTitle] = useState("");
 
-  const convertRaw = (e) => {
+  const handleEditorChange = (content, editor) => {
+    console.log("Content was updated:", content);
+    setContent(content);
+  };
+
+  // const handleEditorChange = (e) => {
+  //   setContent(e.target.value);
+  // };
+
+  const handleSlug = (e) => {
+    var slug = convertToSlug(e.target.value);
+    console.log(slug);
+    setUrl(slug);
+  };
+  function convertToSlug(Text) {
+    return Text.toLowerCase()
+      .replace(/[^\w ]+/g, "")
+      .replace(/ +/g, "-");
+  }
+
+  const updateData = (e) => {
     e.preventDefault();
-    JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-    console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+
+    fetch(API.baseurl + API.uploadPage, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        url: "https://pokerswapping.com/networks/" + url,
+        network: network,
+        content: content,
+        title: title,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        window.location.reload(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const config = {
+    readonly: false, // all options from https://xdsoft.net/jodit/doc/
   };
   return (
     <div>
@@ -23,20 +67,86 @@ const NewNetworkPage = () => {
             <Card.Body>
               <Form>
                 <Form.Group>
-                  <Form.Label>URL</Form.Label>
-                  <Form.Control as="text" placeholder="URL" />
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Title"
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                      handleSlug(e);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>URL slug</Form.Label>
+                  <InputGroup>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="inputGroupPrepend">
+                        https://pokerswapping.com/networks/
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <Form.Control
+                      type="text"
+                      placeholder="slug"
+                      aria-describedby="inputGroupPrepend"
+                      value={url}
+                      required
+                      onChange={(e) => handleSlug(e)}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter slug
+                    </Form.Control.Feedback>
+                  </InputGroup>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Network</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={network}
+                    onChange={(e) => setNetwork(e.target.value)}
+                  >
+                    <option>PartyPoker</option>
+                    <option>SkyPoker</option>
+                    <option>FullTilt</option>
+                    <option>PokerStars</option>
+                    <option>888Poker</option>
+                  </Form.Control>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Content [HTML Format]</Form.Label>
+                  {/* <Form.Control
+                    type="email"
+                    placeholder="url"
+                    onChange={(e) => setContent(e.target.value)}
+                  /> */}
+
                   <Editor
-                    style={{ minHeight: "200px" }}
-                    editorState={editorState}
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClassName"
-                    onEditorStateChange={(v) => setEditorState(v)}
+                    initialValue="<p>This is the initial content of the editor</p>"
+                    init={{
+                      height: 500,
+                      menubar: false,
+                      plugins: [
+                        "advlist autolink lists link image charmap print preview anchor",
+                        "searchreplace visualblocks code fullscreen",
+                        "insertdatetime media table paste code help wordcount",
+                      ],
+                      toolbar:
+                        "undo redo | formatselect | bold italic backcolor | \
+             alignleft aligncenter alignright alignjustify | \
+             bullist numlist outdent indent | removeformat | help",
+                    }}
+                    onEditorChange={handleEditorChange}
                   />
-                  <Button onClick={(e) => convertRaw(e)}>Convert </Button>
+                  <Button onClick={(e) => updateData(e)}>Convert </Button>
+                </Form.Group>
+                <Form.Group>
+                  {/* <Form.Label>Logo/Icon</Form.Label>
+                  <Form.File
+                    id="custom-file"
+                    label="Select Icon"
+                    custom
+                    onChange={(e) => setSelectedIcon(e.target.files)}
+                  /> */}
                 </Form.Group>
               </Form>
             </Card.Body>

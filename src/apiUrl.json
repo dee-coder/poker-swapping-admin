@@ -1,9 +1,11 @@
 {
-    "baseurl":"https://api.pokerswapping.com",
+    "baseurl":"http://localhost:1234",
     "getPlayerList":"/admin/player/all",
     "getSponsorsList":"/admin/sponsors/all",
     "getUpcomingTournaments":"/admin/tournaments/upcoming",
     "getAllNetworks":"/admin/networks/all",
-    "addNewNetwork":"/admin/networks/add"
+    "addNewNetwork":"/admin/networks/add",
+    "uploadPage":"/admin/pages/new",
+    "getAllPage":"/admin/pages/all"
     
 }

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { CustomNetworksListWidget } from "../widgets/CustomNetworksListWidget";
 import API from "../../apiUrl.json";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { ListsWidget4 } from "../../_metronic/_partials/widgets/lists/ListsWidget4";
+import { CustomNetworkPagesList } from "../widgets/CustomNetworkPagesList";
 
 const NetworkPages = () => {
   const [data, setData] = useState([]);
@@ -15,11 +16,16 @@ const NetworkPages = () => {
   const [url, setUrl] = useState("");
 
   useEffect(() => {
-    fetch(API.baseurl + API.getAllNetworks)
+    fetch(API.baseurl + API.getAllPage, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        setData(json.tournaments);
+        setData(json.result);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -58,26 +64,30 @@ const NetworkPages = () => {
   //       console.log(error);
   //     }
   //   };
-  return (
-    <div
-      className="card card-custom card-strech gutter-b"
-      style={{ padding: "30px" }}
-    >
-      {openAddNew && <Redirect to="/networks/newpage" />}
+  if (openAddNew) {
+    return <Redirect to="/networks/newpage" />;
+  } else {
+    return (
       <Row>
-        <Col lg={12}>
-          <div className="d-flex justify-content-center align-items-center">
-            <span style={{ marginRight: "20px" }}>
-              You dont have any page yet.
-            </span>{" "}
-            <Button variant="success" onClick={(e) => setOpenAddNew(true)}>
-              Create Page +
-            </Button>
+        {data === null || data === undefined || data === [] ? (
+          <div className="card card-custom " style={{ padding: "30px" }}>
+            <Col lg={12}>
+              <div className="d-flex justify-content-center align-items-center">
+                <span style={{ marginRight: "20px" }}>
+                  You dont have any page yet.
+                </span>{" "}
+                <Button variant="success" onClick={(e) => setOpenAddNew(true)}>
+                  Create Page +
+                </Button>
+              </div>
+            </Col>
           </div>
-        </Col>
+        ) : (
+          <CustomNetworkPagesList data={data} />
+        )}
       </Row>
-    </div>
-  );
+    );
+  }
 };
 
 export default NetworkPages;
