@@ -58,11 +58,16 @@ export function CustomNetworkPagesList({ data }) {
                 <Col lg={3}>
                   {" "}
                   <span className="text-primary">
-                    <a href={page.url}>
+                    <a
+                      href={`https://pokerswapping.com/network/${page.url}`}
+                      target="_blank"
+                    >
                       {" "}
                       {page.url.length > 50
-                        ? page.url.substring(0, 25 - 3) + "..."
-                        : page.url}{" "}
+                        ? "https://pokerswapping.com/network/" +
+                          page.url.substring(0, 25 - 3) +
+                          "..."
+                        : "https://pokerswapping.com/network/" + page.url}{" "}
                       <i
                         class="fas fa-external-link-alt"
                         style={{ fontSize: "14px", color: "#0275d8" }}

@@ -39,7 +39,7 @@ const NewNetworkPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        url: "https://pokerswapping.com/networks/" + url,
+        url: url,
         network: network,
         content: content,
         title: title,
