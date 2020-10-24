@@ -5,9 +5,8 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { ListsWidget4 } from "../../_metronic/_partials/widgets/lists/ListsWidget4";
 import { CustomNetworkPagesList } from "../widgets/CustomNetworkPagesList";
-import CustomTableForNetworks from "../tables/CustomTableForNetworks";
 
-const NetworksAll = () => {
+const CommonPagesAll = () => {
   const [data, setData] = useState([]);
   const [openAddNew, setOpenAddNew] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState("");
@@ -17,7 +16,7 @@ const NetworksAll = () => {
   const [url, setUrl] = useState("");
 
   useEffect(() => {
-    fetch(API.baseurl + API.getAllNetworks, {
+    fetch(API.baseurl + API.getAllPage, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +25,7 @@ const NetworksAll = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        setData(json.tournaments);
+        setData(json.result);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -66,7 +65,7 @@ const NetworksAll = () => {
   //     }
   //   };
   if (openAddNew) {
-    return <Redirect to="/networks/new" />;
+    return <Redirect to="/networks/newpage" />;
   } else {
     return (
       <Row>
@@ -84,11 +83,11 @@ const NetworksAll = () => {
             </Col>
           </div>
         ) : (
-          <CustomTableForNetworks data={data} />
+          <CustomNetworkPagesList data={data} />
         )}
       </Row>
     );
   }
 };
 
-export default NetworksAll;
+export default CommonPagesAll;

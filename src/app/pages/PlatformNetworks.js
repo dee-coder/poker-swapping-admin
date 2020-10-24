@@ -4,7 +4,7 @@ import API from "../../apiUrl.json";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import axios from "axios";
 
-const NetworksList = () => {
+const AllNetworksPage = () => {
   const [data, setData] = useState([]);
   const [openAddNew, setOpenAddNew] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState("");
@@ -42,7 +42,8 @@ const NetworksList = () => {
 
         console.log(API.baseurl + API.addNewNetwork);
         await fetch(API.baseurl + API.addNewNetwork, {
-          method: "POST",
+          method: "post",
+
           body: fileData,
         })
           .then((res) => res.json())
@@ -140,4 +141,4 @@ const NetworksList = () => {
   );
 };
 
-export default NetworksList;
+export default AllNetworksPage;

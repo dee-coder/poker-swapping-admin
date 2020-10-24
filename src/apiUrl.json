@@ -4,8 +4,10 @@
     "getSponsorsList":"/admin/sponsors/all",
     "getUpcomingTournaments":"/admin/tournaments/upcoming",
     "getAllNetworks":"/admin/networks/all",
-    "addNewNetwork":"/admin/networks/add",
+    "addNewNetwork":"/admin/networks/new",
     "uploadPage":"/admin/pages/new",
     "getAllPage":"/admin/pages/all"
+   
+
     
 }
