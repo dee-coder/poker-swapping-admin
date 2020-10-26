@@ -311,6 +311,67 @@ export function AsideMenuList({ layoutProps }) {
             </ul>
           </div>
         </li>
+        <li
+          className={`menu-item menu-item-submenu ${getMenuItemActive(
+            "/banners",
+            true
+          )}`}
+          aria-haspopup="true"
+          data-menu-toggle="hover"
+        >
+          <NavLink className="menu-link menu-toggle" to="/banners/all">
+            <span className="svg-icon menu-icon">
+              <SVG src={toAbsoluteUrl("/media/svg/icons/Design/Cap-2.svg")} />
+            </span>
+            <span className="menu-text">Banners</span>
+            <i className="menu-arrow" />
+          </NavLink>
+          <div className="menu-submenu ">
+            <i className="menu-arrow" />
+            <ul className="menu-subnav">
+              {/* <li className="menu-item  menu-item-parent" aria-haspopup="true">
+                <span className="menu-link">
+                  <span className="menu-text">Upcoming Tournaments</span>
+                </span>
+              </li> */}
+
+              {/* Inputs */}
+              {/*begin::2 Level*/}
+              <li
+                className={`menu-item menu-item-submenu ${getMenuItemActive(
+                  "/banners/all",
+                  true
+                )}`}
+                aria-haspopup="true"
+                data-menu-toggle="hover"
+              >
+                <NavLink className="menu-link menu-toggle" to="/banners/all">
+                  <i className="menu-bullet menu-bullet-dot">
+                    <span />
+                  </i>
+                  <span className="menu-text">All Banners</span>
+                  <i className="menu-arrow" />
+                </NavLink>
+              </li>
+              <li
+                className={`menu-item menu-item-submenu ${getMenuItemActive(
+                  "/banners/new",
+                  true
+                )}`}
+                aria-haspopup="true"
+                data-menu-toggle="hover"
+              >
+                <NavLink className="menu-link menu-toggle" to="/banners/new">
+                  <i className="menu-bullet menu-bullet-dot">
+                    <span />
+                  </i>
+                  <span className="menu-text">Add New Banner</span>
+                  <i className="menu-arrow" />
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </li>
         {/* Material-UI */}
         {/*begin::1 Level*/}
         <li

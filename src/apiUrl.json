@@ -9,9 +9,10 @@
     "getAllPage":"/admin/pages/all",
     "deleteNetwork":"/admin/network/delete",
     "deletePages":"/admin/pages/delete",
-
+    "addNewBanner":"/admin/banners/new",
     "updateNetworkWithoutLogo":"/admin/network/update-no-logo",
     "updateNetworkWithLogo":"/admin/network/update-with-logo",
-    "updatePage":"/admin/pages/update"
+    "updatePage":"/admin/pages/update",
+    "getAllBanners":"/admin/banners/all"
 
 }
