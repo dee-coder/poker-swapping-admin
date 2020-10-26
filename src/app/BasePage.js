@@ -14,6 +14,8 @@ import AllNetworksPage from "./pages/NetworkPages";
 import NewNetworkPage from "./pages/NewNetworkPage";
 import CommonPagesAll from "./pages/CommonPagesAll";
 import CommonPagesNew from "./pages/CommonPagesNew";
+import EditNetwork from "./pages/EditNetworkPage";
+import EditCommonPages from "./pages/EditCommonPages";
 
 const GoogleMaterialPage = lazy(() =>
   import("./modules/GoogleMaterialExamples/GoogleMaterialPage")
@@ -55,9 +57,12 @@ export default function BasePage() {
       />
       <ContentRoute path="/networks/all" component={AllNetworksPage} />
       <ContentRoute path="/networks/new" component={NewNetworkPage} />
+      <ContentRoute path="/networks/edit" component={EditNetwork} />
+
       {/* <ContentRoute path="/networks/newpage" component={NewNetworkPage} /> */}
       <ContentRoute path="/pages/all" component={CommonPagesAll} />
       <ContentRoute path="/pages/new" component={CommonPagesNew} />
+      <ContentRoute path="/pages/edit" component={EditCommonPages} />
 
       <ContentRoute
         path="/deals/888poker-review"

@@ -6,8 +6,12 @@
     "getAllNetworks":"/admin/networks/all",
     "addNewNetwork":"/admin/networks/new",
     "uploadPage":"/admin/pages/new",
-    "getAllPage":"/admin/pages/all"
-   
+    "getAllPage":"/admin/pages/all",
+    "deleteNetwork":"/admin/network/delete",
+    "deletePages":"/admin/pages/delete",
 
-    
+    "updateNetworkWithoutLogo":"/admin/network/update-no-logo",
+    "updateNetworkWithLogo":"/admin/network/update-with-logo",
+    "updatePage":"/admin/pages/update"
+
 }

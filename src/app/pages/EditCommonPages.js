@@ -1,14 +1,25 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Col, Row, Form, Card, Button, InputGroup } from "react-bootstrap";
 import { Editor } from "@tinymce/tinymce-react";
 import API from "../../apiUrl.json";
-const CommonPagesNew = () => {
+import { Box } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
+const EditCommonPages = (props) => {
   //const [editorState, setEditorState] = useState("");
+  const history = useHistory();
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const [url, setUrl] = useState("");
   const [network, setNetwork] = useState("");
   const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    var obj = props.location.obj;
+    console.log(props.location.obj);
+    setContent(obj.content);
+    setUrl(obj.url);
+    setTitle(obj.title);
+  }, []);
 
   const handleEditorChange = (content, editor) => {
     console.log("Content was updated:", content);
@@ -33,14 +44,14 @@ const CommonPagesNew = () => {
   const updateData = (e) => {
     e.preventDefault();
 
-    fetch(API.baseurl + API.uploadPage, {
+    fetch(API.baseurl + API.updatePage, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         url: url,
-        network: network,
+
         content: content,
         title: title,
       }),
@@ -48,7 +59,8 @@ const CommonPagesNew = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        window.location.reload(false);
+        history.push("/pages/all");
+        //window.location.reload(false);
       })
       .catch((err) => console.log(err));
   };
@@ -71,6 +83,7 @@ const CommonPagesNew = () => {
                   <Form.Control
                     type="text"
                     placeholder="Title"
+                    value={title}
                     onChange={(e) => {
                       setTitle(e.target.value);
                       handleSlug(e);
@@ -108,7 +121,7 @@ const CommonPagesNew = () => {
                   /> */}
 
                   <Editor
-                    initialValue="<p>This is the initial content of the editor</p>"
+                    initialValue={content}
                     init={{
                       height: 500,
                       menubar: false,
@@ -124,7 +137,6 @@ const CommonPagesNew = () => {
                     }}
                     onEditorChange={handleEditorChange}
                   />
-                  <Button onClick={(e) => updateData(e)}>Convert </Button>
                 </Form.Group>
                 <Form.Group>
                   {/* <Form.Label>Logo/Icon</Form.Label>
@@ -140,8 +152,28 @@ const CommonPagesNew = () => {
           </Card>
         </Col>
       </Row>
+      <Row>
+        <Col lg={12}>
+          <Box style={{ padding: "30px" }}>
+            <Row>
+              <Col lg={12}>
+                <div style={{ float: "right" }}>
+                  <Link to="/pages/all">
+                    <Button variant="secondary" style={{ marginRight: "30px" }}>
+                      Cancel
+                    </Button>
+                  </Link>
+                  <Button variant="primary" onClick={(e) => updateData(e)}>
+                    Save Changes
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+          </Box>
+        </Col>
+      </Row>
     </div>
   );
 };
 
-export default CommonPagesNew;
+export default EditCommonPages;

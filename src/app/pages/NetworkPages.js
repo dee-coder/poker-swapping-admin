@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { ListsWidget4 } from "../../_metronic/_partials/widgets/lists/ListsWidget4";
 import { CustomNetworkPagesList } from "../widgets/CustomNetworkPagesList";
 import CustomTableForNetworks from "../tables/CustomTableForNetworks";
+import { PagesListCustom } from "../tables/PagesListCustom";
 
 const NetworksAll = () => {
   const [data, setData] = useState([]);
@@ -15,6 +16,9 @@ const NetworksAll = () => {
   const [slug, setSlug] = useState("");
   const [status, setStatus] = useState("");
   const [url, setUrl] = useState("");
+  const [selectedForDelete, setSelectedForDelete] = useState();
+
+  const [showModalforDelete, setShowModalForDelete] = useState(false);
 
   useEffect(() => {
     fetch(API.baseurl + API.getAllNetworks, {
@@ -30,6 +34,33 @@ const NetworksAll = () => {
       })
       .catch((err) => console.log(err.message));
   }, []);
+
+  const handleModalOperation = (e) => {
+    e.preventDefault();
+    setShowModalForDelete(false);
+  };
+
+  const deleteNetwork = (e) => {
+    e.preventDefault();
+    fetch(API.baseurl + API.deleteNetwork, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ slug: selectedForDelete }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        if (json.status === "ok") {
+          window.location.reload(false);
+          setShowModalForDelete(false);
+        } else {
+          alert(json.message);
+          setShowModalForDelete(false);
+        }
+      });
+  };
 
   //   const onFileUpload = async (e) => {
   //     e.preventDefault();
@@ -84,8 +115,42 @@ const NetworksAll = () => {
             </Col>
           </div>
         ) : (
-          <CustomTableForNetworks data={data} />
+          <PagesListCustom
+            data={data}
+            setShowModalForDelete={setShowModalForDelete}
+            setSelectedForDelete={setSelectedForDelete}
+          />
+          // <CustomTableForNetworks data={data} />
         )}
+        <Modal
+          show={showModalforDelete}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Delete Network
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>{selectedForDelete} </h4>
+            <p>
+              Are you sure about to delete {selectedForDelete}? This page will
+              be deleted permanently.
+            </p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              onClick={(e) => {
+                handleModalOperation(e);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button onClick={(e) => deleteNetwork(e)}>Delete</Button>
+          </Modal.Footer>
+        </Modal>
       </Row>
     );
   }
