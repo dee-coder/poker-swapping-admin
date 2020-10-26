@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Col, Row, Form, Card, Button, InputGroup } from "react-bootstrap";
 import { Editor } from "@tinymce/tinymce-react";
 import API from "../../apiUrl.json";
+import { Box } from "@material-ui/core";
 const CommonPagesNew = () => {
   //const [editorState, setEditorState] = useState("");
   const editor = useRef(null);
@@ -124,7 +125,6 @@ const CommonPagesNew = () => {
                     }}
                     onEditorChange={handleEditorChange}
                   />
-                  <Button onClick={(e) => updateData(e)}>Convert </Button>
                 </Form.Group>
                 <Form.Group>
                   {/* <Form.Label>Logo/Icon</Form.Label>
@@ -138,6 +138,21 @@ const CommonPagesNew = () => {
               </Form>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={12}>
+          <Box style={{ padding: "30px" }}>
+            <Row>
+              <Col lg={12}>
+                <div style={{ float: "right" }}>
+                  <Button variant="primary" onClick={(e) => updateData(e)}>
+                    Save Changes
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+          </Box>
         </Col>
       </Row>
     </div>

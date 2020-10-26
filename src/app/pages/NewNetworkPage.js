@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Col, Row, Form, Card, Button, InputGroup } from "react-bootstrap";
 import { Editor } from "@tinymce/tinymce-react";
 import API from "../../apiUrl.json";
-import { Divider } from "@material-ui/core";
+import { Box, Divider } from "@material-ui/core";
 import axios from "axios";
 const NewNetworkPage = () => {
   const [networkName, setNetworkName] = useState();
@@ -126,7 +126,15 @@ const NewNetworkPage = () => {
                   </Form.Control>
                 </Form.Group>
               </Form>
-              <Divider />
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "30px" }}>
+        <Col lg={12}>
+          <Card>
+            <Card.Header>Network Page</Card.Header>
+            <Card.Body>
               <Form>
                 <Form.Group>
                   <Form.Label>Title</Form.Label>
@@ -181,7 +189,6 @@ const NewNetworkPage = () => {
                     }}
                     onEditorChange={handleEditorChange}
                   />
-                  <Button onClick={(e) => onFileUpload(e)}>Add Network </Button>
                 </Form.Group>
                 <Form.Group>
                   {/* <Form.Label>Logo/Icon</Form.Label>
@@ -195,6 +202,21 @@ const NewNetworkPage = () => {
               </Form>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={12}>
+          <Box style={{ padding: "30px" }}>
+            <Row>
+              <Col lg={12}>
+                <div style={{ float: "right" }}>
+                  <Button variant="primary" onClick={(e) => onFileUpload(e)}>
+                    Add Networks
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+          </Box>
         </Col>
       </Row>
       {/* <Row>

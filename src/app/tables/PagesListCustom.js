@@ -40,11 +40,10 @@ export function PagesListCustom({
                 <tr className="text-left text-uppercase">
                   <th style={{ minWidth: "100px" }}>Icon</th>
 
-                  <th style={{ minWidth: "100px" }}>Name</th>
-                  <th style={{ minWidth: "100px" }}>Website</th>
-                  <th style={{ minWidth: "100px" }}>Page Title</th>
-                  <th style={{ minWidth: "130px" }}>Page Url</th>
-                  <th style={{ minWidth: "130px" }}>Action</th>
+                  <th style={{ minWidth: "100px" }}>Network</th>
+                  <th style={{ minWidth: "100px" }}>Page</th>
+
+                  <th style={{ minWidth: "130px" }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -78,30 +77,9 @@ export function PagesListCustom({
                         <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
                           {row.name}
                         </span>
-                        {/* <span className="text-muted font-weight-bold">
-                      In Proccess
-                    </span> */}
-                      </td>
-                      <td>
-                        <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                          {row.url}
-                        </span>
-                        {/* <span className="text-muted font-weight-bold">
-                      In Proccess
-                    </span> */}
-                      </td>
-                      <td>
-                        <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                          {row.title}
-                        </span>
-                        {/* <span className="text-muted font-weight-bold">Paid</span> */}
-                      </td>
-                      <td>
-                        <a
-                          href={`https://pokerswapping.com/networks/${row.page_slug}`}
-                        >
-                          <span className="text-dark-75 font-weight-bold d-block font-size-lg text-hover-primary">
-                            {`https://pokerswapping.com/networks/${row.page_slug}`}
+                        <a href={row.url}>
+                          <span className="text-muted-75 font-weight-bold d-block font-size-lg text-hover-primary">
+                            {row.url}
                             <i
                               class="fas fa-external-link-alt"
                               style={{
@@ -113,9 +91,32 @@ export function PagesListCustom({
                           </span>
                         </a>
                         {/* <span className="text-muted font-weight-bold">
-                      Web, UI/UX Design
+                      In Proccess
                     </span> */}
                       </td>
+
+                      <td>
+                        <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
+                          {row.title}
+                        </span>
+                        <a
+                          href={`https://pokerswapping.com/networks/${row.page_slug}`}
+                        >
+                          <span className="text-muted-75 font-weight-bold d-block font-size-lg text-hover-primary">
+                            {`https://pokerswapping.com/networks/${row.page_slug}`}
+                            <i
+                              class="fas fa-external-link-alt"
+                              style={{
+                                fontSize: "12px",
+                                color: "#000",
+                                margin: "5px",
+                              }}
+                            ></i>
+                          </span>
+                        </a>
+                        {/* <span className="text-muted font-weight-bold">Paid</span> */}
+                      </td>
+
                       {/* <td>
                         <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
                           {row.content}
