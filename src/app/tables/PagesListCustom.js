@@ -25,9 +25,9 @@ export function PagesListCustom({
         <div className="card-toolbar">
           <Link
             to="/networks/new"
-            className="btn btn-danger font-weight-bolder font-size-sm"
+            className="btn btn-primary font-weight-bolder font-size-sm"
           >
-            New +
+            Add New Network +
           </Link>
         </div>
       </div>
