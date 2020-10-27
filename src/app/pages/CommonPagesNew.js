@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Col, Row, Form, Card, Button, InputGroup } from "react-bootstrap";
 import { Editor } from "@tinymce/tinymce-react";
 import API from "../../apiUrl.json";
@@ -10,6 +10,22 @@ const CommonPagesNew = () => {
   const [url, setUrl] = useState("");
   const [network, setNetwork] = useState("");
   const [title, setTitle] = useState("");
+  const [bannerTop, setBannerTop] = useState();
+  const [bannerBottom, setBannerBottom] = useState();
+  const [bannersList, setBannersList] = useState([]);
+
+  useEffect(() => {
+    fetch(API.baseurl + API.getAllBanners, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setBannersList(json.result);
+      });
+  }, []);
 
   const handleEditorChange = (content, editor) => {
     console.log("Content was updated:", content);
@@ -44,6 +60,8 @@ const CommonPagesNew = () => {
         network: network,
         content: content,
         title: title,
+        banner_top: bannerTop,
+        banner_bottom: bannerBottom,
       }),
     })
       .then((response) => response.json())
@@ -134,6 +152,43 @@ const CommonPagesNew = () => {
                     custom
                     onChange={(e) => setSelectedIcon(e.target.files)}
                   /> */}
+                </Form.Group>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "30px" }}>
+        <Col lg={12}>
+          <Card>
+            <Card.Header>Banners</Card.Header>
+            <Card.Body>
+              <Form>
+                <Form.Group>
+                  <Form.Label>Banner Top</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => setBannerTop(e.target.value)}
+                    value={bannerTop}
+                  >
+                    <option>Select Top Banner</option>
+                    {bannersList.map((banner) => {
+                      return <option value={banner.id}>{banner.title}</option>;
+                    })}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Banner Bottom</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => setBannerBottom(e.target.value)}
+                    value={bannerBottom}
+                  >
+                    <option> Select Bottom Banner</option>
+                    {bannersList.map((banner) => {
+                      return <option value={banner.id}>{banner.title}</option>;
+                    })}
+                  </Form.Control>
                 </Form.Group>
               </Form>
             </Card.Body>

@@ -13,12 +13,28 @@ const EditCommonPages = (props) => {
   const [network, setNetwork] = useState("");
   const [title, setTitle] = useState("");
 
+  const [bannerTop, setBannerTop] = useState();
+  const [bannerBottom, setBannerBottom] = useState();
+  const [bannersList, setBannersList] = useState([]);
+
   useEffect(() => {
     var obj = props.location.obj;
     console.log(props.location.obj);
     setContent(obj.content);
     setUrl(obj.url);
     setTitle(obj.title);
+    setBannerTop(obj.banner_top);
+    setBannerBottom(obj.banner_bottom);
+    fetch(API.baseurl + API.getAllBanners, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setBannersList(json.result);
+      });
   }, []);
 
   const handleEditorChange = (content, editor) => {
@@ -51,9 +67,10 @@ const EditCommonPages = (props) => {
       },
       body: JSON.stringify({
         url: url,
-
         content: content,
         title: title,
+        banner_top: bannerTop,
+        banner_bottom: bannerBottom,
       }),
     })
       .then((response) => response.json())
@@ -146,6 +163,43 @@ const EditCommonPages = (props) => {
                     custom
                     onChange={(e) => setSelectedIcon(e.target.files)}
                   /> */}
+                </Form.Group>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "30px" }}>
+        <Col lg={12}>
+          <Card>
+            <Card.Header>Banners</Card.Header>
+            <Card.Body>
+              <Form>
+                <Form.Group>
+                  <Form.Label>Banner Top</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => setBannerTop(e.target.value)}
+                    value={bannerTop}
+                  >
+                    <option>Select Top Banner</option>
+                    {bannersList.map((banner) => {
+                      return <option value={banner.id}>{banner.title}</option>;
+                    })}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Banner Bottom</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => setBannerBottom(e.target.value)}
+                    value={bannerBottom}
+                  >
+                    <option> Select Bottom Banner</option>
+                    {bannersList.map((banner) => {
+                      return <option value={banner.id}>{banner.title}</option>;
+                    })}
+                  </Form.Control>
                 </Form.Group>
               </Form>
             </Card.Body>

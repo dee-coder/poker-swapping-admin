@@ -25,6 +25,9 @@ const EditNetwork = (props) => {
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState();
+  const [bannerTop, setBannerTop] = useState();
+  const [bannerBottom, setBannerBottom] = useState();
+  const [bannersList, setBannersList] = useState([]);
   //const [obj, setObj] = useState();
   useEffect(() => {
     var obj = props.location.obj;
@@ -38,6 +41,18 @@ const EditNetwork = (props) => {
     setContent(obj.content);
     setTitle(obj.title);
     setStatus(obj.status);
+    setBannerTop(obj.banner_top);
+    setBannerBottom(obj.banner_bottom);
+    fetch(API.baseurl + API.getAllBanners, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setBannersList(json.result);
+      });
   }, []);
 
   const handleEditorChange = (content, editor) => {
@@ -69,6 +84,8 @@ const EditNetwork = (props) => {
           url: url,
           title: title,
           status: status,
+          banner_top: bannerTop,
+          banner_bottom: bannerBottom,
         };
         fetch(API.baseurl + API.updateNetworkWithoutLogo, {
           method: "POST",
@@ -100,6 +117,8 @@ const EditNetwork = (props) => {
         fileData.append("url", url);
         fileData.append("title", title);
         fileData.append("status", status);
+        fileData.append("banner_top", bannerTop);
+        fileData.append("banner_bottom", bannerBottom);
 
         console.log(API.baseurl + API.updateNetworkWithLogo);
         fetch(API.baseurl + API.updateNetworkWithLogo, {
@@ -262,6 +281,49 @@ const EditNetwork = (props) => {
                     custom
                     onChange={(e) => setSelectedIcon(e.target.files)}
                   /> */}
+                </Form.Group>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "30px" }}>
+        <Col lg={12}>
+          <Card>
+            <Card.Header>Banners</Card.Header>
+            <Card.Body>
+              <Form>
+                <Form.Group>
+                  <Form.Label>Banner Top</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setBannerTop(e.target.value);
+                    }}
+                    value={bannerTop}
+                  >
+                    <option>Select Top Banner</option>
+                    {bannersList.map((banner) => {
+                      return <option value={banner.id}>{banner.title}</option>;
+                    })}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Banner Bottom</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setBannerBottom(e.target.value);
+                    }}
+                    value={bannerBottom}
+                  >
+                    <option> Select Bottom Banner</option>
+                    {bannersList.map((banner) => {
+                      return <option value={banner.id}>{banner.title}</option>;
+                    })}
+                  </Form.Control>
                 </Form.Group>
               </Form>
             </Card.Body>

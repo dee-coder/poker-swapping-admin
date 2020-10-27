@@ -77,7 +77,7 @@ export function PagesListCustom({
                         <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
                           {row.name}
                         </span>
-                        <a href={row.url}>
+                        <a href={row.url} target="_blank">
                           <span className="text-muted-75 font-weight-bold d-block font-size-lg text-hover-primary">
                             {row.url}
                             <i
@@ -101,6 +101,7 @@ export function PagesListCustom({
                         </span>
                         <a
                           href={`https://pokerswapping.com/networks/${row.page_slug}`}
+                          target="_blank"
                         >
                           <span className="text-muted-75 font-weight-bold d-block font-size-lg text-hover-primary">
                             {`https://pokerswapping.com/networks/${row.page_slug}`}
@@ -144,7 +145,6 @@ export function PagesListCustom({
                           </span>
                         </Link>
                         <a
-                          href="#"
                           className="btn btn-icon btn-light btn-sm"
                           onClick={(e) => {
                             setSelectedForDelete(row.slug);

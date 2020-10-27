@@ -84,19 +84,6 @@ export function CustomAffPagesList({
                         {/* <span className="text-muted font-weight-bold">Paid</span> */}
                       </td>
 
-                      {/* <td>
-                        <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                          {row.content}
-                        </span>
-                        <img
-                      src={toAbsoluteUrl("/media/logos/stars.png")}
-                      alt="image"
-                      style={{ width: "5.5rem" }}
-                    />
-                    <span className="text-muted font-weight-bold d-block font-size-sm">
-                      Best Rated
-                    </span>
-                      </td> */}
                       <td className="text-left pr-0">
                         <Link
                           to={{ pathname: "/pages/edit", obj: row }}

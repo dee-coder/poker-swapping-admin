@@ -80,7 +80,7 @@ export function BannersListCustom({
                         </span>
                       </td>
                       <td>
-                        <a href={row.aff_url}>
+                        <a href={row.aff_url} target="_blank">
                           <span className="text-muted-75 font-weight-bold d-block font-size-lg text-hover-primary">
                             {row.aff_url}
                             <i
