@@ -18,6 +18,7 @@ import EditNetwork from "./pages/EditNetworkPage";
 import EditCommonPages from "./pages/EditCommonPages";
 import AllBannersList from "./pages/AllBannersList";
 import AddNewBanner from "./pages/AddNewBanner";
+import EditBannerDetails from "./pages/EditBannerPage";
 
 const GoogleMaterialPage = lazy(() =>
   import("./modules/GoogleMaterialExamples/GoogleMaterialPage")
@@ -68,6 +69,7 @@ export default function BasePage() {
 
       <ContentRoute path="/banners/all" component={AllBannersList} />
       <ContentRoute path="/banners/new" component={AddNewBanner} />
+      <ContentRoute path="/banners/edit" compoentn={EditBannerDetails} />
 
       <ContentRoute
         path="/deals/888poker-review"

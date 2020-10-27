@@ -101,7 +101,7 @@ const CommonPagesNew = () => {
                   <InputGroup>
                     <InputGroup.Prepend>
                       <InputGroup.Text id="inputGroupPrepend">
-                        https://pokerswapping.com/networks/
+                        https://pokerswapping.com/
                       </InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control

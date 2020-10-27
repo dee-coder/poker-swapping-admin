@@ -118,7 +118,7 @@ export function BannersListCustom({
                       </td> */}
                       <td className="text-left pr-0">
                         <Link
-                          to={{ pathname: "/networks/edit", obj: row }}
+                          to={{ pathname: "/banners/edit", obj: row }}
                           className="btn btn-icon btn-light btn-sm mx-3"
                         >
                           <span className="svg-icon svg-icon-md svg-icon-primary">

@@ -50,10 +50,11 @@ export function CustomAffPagesList({
                     <tr>
                       <td>
                         <a
-                          href={`https://pokerswapping.com/networks/${row.url}`}
+                          href={`https://pokerswapping.com/${row.url}`}
+                          target="_blank"
                         >
                           <span className="text-dark-75 font-weight-bold d-block font-size-lg text-hover-primary">
-                            {`https://pokerswapping.com/networks/${row.url}`}
+                            {`https://pokerswapping.com/${row.url}`}
 
                             <i
                               class="fas fa-external-link-alt"
