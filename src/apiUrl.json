@@ -13,6 +13,10 @@
     "updateNetworkWithoutLogo":"/admin/network/update-no-logo",
     "updateNetworkWithLogo":"/admin/network/update-with-logo",
     "updatePage":"/admin/pages/update",
-    "getAllBanners":"/admin/banners/all"
+    "getAllBanners":"/admin/banners/all",
+    "addNewSubscription":"/admin/subscription/new",
+    "getAllSubscription":"/admin/subscription/all",
+    "updateSubscription":"/admin/subscription/edit",
+    "deleteSubsPlan":"/admin/subscription/delete"
 
 }

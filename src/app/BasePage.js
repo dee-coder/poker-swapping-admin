@@ -19,6 +19,9 @@ import EditCommonPages from "./pages/EditCommonPages";
 import AllBannersList from "./pages/AllBannersList";
 import AddNewBanner from "./pages/AddNewBanner";
 import EditBannerDetails from "./pages/EditBannerPage";
+import SubscriptionNew from "./pages/SubsriptionNew";
+import SubscriptionAll from "./pages/SubscriptionAll";
+import SubscriptionEdit from "./pages/SubscriptionEdit";
 
 const GoogleMaterialPage = lazy(() =>
   import("./modules/GoogleMaterialExamples/GoogleMaterialPage")
@@ -70,6 +73,10 @@ export default function BasePage() {
       <ContentRoute path="/banners/all" component={AllBannersList} />
       <ContentRoute path="/banners/new" component={AddNewBanner} />
       <ContentRoute path="/banners/edit" compoentn={EditBannerDetails} />
+
+      <ContentRoute path="/subscription/all" component={SubscriptionAll} />
+      <ContentRoute path="/subscription/new" component={SubscriptionNew} />
+      <ContentRoute path="/subscription/edit" component={SubscriptionEdit} />
 
       <ContentRoute
         path="/deals/888poker-review"
