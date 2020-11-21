@@ -22,6 +22,7 @@ import EditBannerDetails from "./pages/EditBannerPage";
 import SubscriptionNew from "./pages/SubsriptionNew";
 import SubscriptionAll from "./pages/SubscriptionAll";
 import SubscriptionEdit from "./pages/SubscriptionEdit";
+import SettingPage from "./pages/Settings";
 
 const GoogleMaterialPage = lazy(() =>
   import("./modules/GoogleMaterialExamples/GoogleMaterialPage")
@@ -82,6 +83,8 @@ export default function BasePage() {
         path="/deals/888poker-review"
         component={NetworkReviewPage}
       />
+
+      <ContentRoute path="/settings" component={SettingPage} />
 
       <Route path="/google-material" component={GoogleMaterialPage} />
       <Route path="/react-bootstrap" component={ReactBootstrapPage} />

@@ -1,5 +1,5 @@
 {
-    "baseurl":"https://api.pokerswapping.com",
+    "baseurl":"http://localhost:1234",
     "getPlayerList":"/admin/player/all",
     "getSponsorsList":"/admin/sponsors/all",
     "getUpcomingTournaments":"/admin/tournaments/upcoming",
@@ -17,6 +17,8 @@
     "addNewSubscription":"/admin/subscription/new",
     "getAllSubscription":"/admin/subscription/all",
     "updateSubscription":"/admin/subscription/edit",
-    "deleteSubsPlan":"/admin/subscription/delete"
+    "deleteSubsPlan":"/admin/subscription/delete",
+    "updateDurability":"/admin/settings/update-durability",
+    "fetchSettings":"/admin/settings/details"
 
 }

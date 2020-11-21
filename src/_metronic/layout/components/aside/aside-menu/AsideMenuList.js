@@ -439,6 +439,22 @@ export function AsideMenuList({ layoutProps }) {
             </ul>
           </div>
         </li>
+        <li
+          className={`menu-item menu-item-submenu ${getMenuItemActive(
+            "/settings",
+            true
+          )}`}
+          aria-haspopup="true"
+          data-menu-toggle="hover"
+        >
+          <NavLink className="menu-link menu-toggle" to="/settings">
+            <span className="svg-icon menu-icon">
+              <SVG src={toAbsoluteUrl("/media/svg/icons/Design/Cap-2.svg")} />
+            </span>
+            <span className="menu-text">Settings</span>
+            <i className="menu-arrow" />
+          </NavLink>
+        </li>
         {/* Material-UI */}
         {/*begin::1 Level*/}
         <li
