@@ -1,5 +1,5 @@
 {
-    "baseurl":"http://localhost:1234",
+    "baseurl":"https://api.pokerswapping.com",
     "getPlayerList":"/admin/player/all",
     "getSponsorsList":"/admin/sponsors/all",
     "getUpcomingTournaments":"/admin/tournaments/upcoming",
